@@ -1,47 +1,10 @@
 pipeline {
     agent any
-    
     stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the repository from GitHub
-                git 'https://github.com/chandra9502/docker-test.git'
+        stage('affordable') {
+            steps{
+                git branch: 'main', credentialsId: 'ff225feb-9304-415a-a2da-83b8887c14a7', poll: false, url: 'https://github.com/chandra9502/docker-test.git'
             }
-        }
-        
-        stage('Build') {
-            steps {
-                // Perform build steps here
-                // For example, if it's a Docker project:
-                // sh 'docker build -t myimage .'
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                // Perform deployment steps here
-                // For example, deploying to Docker:
-                // sh 'docker run -d -p 8080:80 myimage'
-            }
-        }
-    }
-    
-    post {
-        success {
-            // Send a success email notification
-            emailext (
-                to: 'vishakula950@gmail.com',
-                subject: 'Pipeline Successful',
-                body: 'The pipeline has completed successfully.'
-            )
-        }
-        failure {
-            // Send a failure email notification
-            emailext (
-                to: 'vishakula950@gmail.com',
-                subject: 'Pipeline Failed',
-                body: 'The pipeline has failed.'
-            )
         }
     }
 }
