@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Fetch') {
+            steps {
+                // Checkout the demo repository from GitHub
+                git 'https://github.com/mattamahesh/-jenkins-demo-mahesh.git'
+            }
+        }
+    }
+}
